@@ -44,6 +44,21 @@ public class MemberApi {
     }
 
     /**
+     *
+     * 获取新增成员的 用户id
+     * @param userId 用户ID
+     * @param userName 用户姓名
+     * @param mobile 手机好
+     * @param departmentId 用户所属部门id
+     * @param accessToken token
+     * @return 用户id
+     */
+    public static String getUserId(String userId, String userName, String mobile, String departmentId, String accessToken){
+        Response response = addMember(userId, userName, mobile, departmentId, accessToken);
+        return userId;
+    }
+
+    /**
      * 获取成员信息
      * @param accessToken token
      * @param userId 用户ID
@@ -151,7 +166,7 @@ public class MemberApi {
      * @param departmentId 部门ID
      * @return 部门钟所有成员的id列表
      */
-    public static ArrayList<String> getDepartmentUserIdList(String accessToken,String departmentId){
+    public static ArrayList<String> getDepartmentUserIdList(String accessToken, String departmentId){
         ArrayList<String> userIdList = getDepartmentUserList(accessToken,departmentId).path("userlist.userid");
         return userIdList;
     }
