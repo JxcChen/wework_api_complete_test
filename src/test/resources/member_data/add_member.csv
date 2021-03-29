@@ -1,5 +1,6 @@
 userId,userName,mobile,departmentId,err_code,err_msg
-lisi,李四,13888888888,2,0,created
+l,李四,13888888888,2,0,created
 lisi1,李四一,13999999999,2,0,created
 lisi1,李四二,13999999999,2,60104,Warning: wrong json format. mobile existed:lisi1
 成,小李,13888888889,2,40003,Warning: wrong json format. invalid userid
+1234567890qwertyuiopasdfghjklzxcvbnm-@1232,李四一,13999999991,2,0,created
