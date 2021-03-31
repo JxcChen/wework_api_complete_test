@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 @Epic("企业微信接口测试用例")
 @Feature("成员管理用例")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MemberCurrentsTestcase {
+public class MemberThreadsTestcase {
 
     static String token = "";
     static String userId = "";
@@ -53,7 +53,11 @@ public class MemberCurrentsTestcase {
     @BeforeEach
     public void setMemberId(){
         // 在每个测试用例开始前 创建一个新的成员用于测试
-        userId = MemberApi.getUserId(FakeDataUtil.getCurrentTimeStamp(), FakeDataUtil.getCurrentTimeStamp(), FakeDataUtil.getFakeMobile(), "2", token);
+
+            String id = "userId"+Thread.currentThread().getId()+FakeDataUtil.getCurrentTimeStamp();
+            String name = "userName"+Thread.currentThread().getId()+FakeDataUtil.getCurrentTimeStamp();
+            userId = MemberApi.getUserId(id, name, FakeDataUtil.getFakeMobile(), "2", token);
+
     }
 
 
@@ -69,6 +73,7 @@ public class MemberCurrentsTestcase {
     @DisplayName("创建成员")
     @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
     @RepeatedTest(100)
+    @Order(1)
     public void addMemberTest(){
         Response response = MemberApi.addMember("li99","li99","13800020021","2",token);
         // 使用软断言进行多个断言判断
@@ -81,7 +86,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行获取成员信息用例")
     @DisplayName("获取成员信息")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(2)
     public void getMemberMesgTest(){
         Response response = MemberApi.getMemberMessage(token, userId);
@@ -90,7 +96,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行修改成员信息用例")
     @DisplayName("获取修改成员信息")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(3)
     public void updateMemberTest(){
         Response response = MemberApi.updateMember(token, userId,"小三","2");
@@ -99,7 +106,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行删除成员信息用例")
     @DisplayName("删除成员")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(4)
     public void deleteMemberTest(){
         Response response = MemberApi.deleteMember(token, userId);
@@ -108,7 +116,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行批量删除成员信息用例")
     @DisplayName("批量删除成员")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(5)
     public void deleteMemberListTest(){
         ArrayList<String> list = new ArrayList<>();
@@ -120,7 +129,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行获取部门成员列表信息用例")
     @DisplayName("获取部门成员列表信息")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(6)
     public void getDepartmentMemberListTest(){
         Response response = MemberApi.getDepartmentUserList(token,"1");
@@ -130,7 +140,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行获取openId用例")
     @DisplayName("获取openId")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(7)
     public void getOpenIdTest(){
         Response response = MemberApi.getOpenid(token, "ChenJinXuan");
@@ -141,7 +152,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行校验用户信息用例")
     @DisplayName("校验用户信息")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(8)
     public void checkInfoTest(){
         Response response = MemberApi.checkInfo(token, "ChenJinXuan");
@@ -150,7 +162,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行邀请成员用例")
     @DisplayName("邀请成员")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(9)
     public void inviteMemberTest(){
         ArrayList<String> userIds = new ArrayList<String>();
@@ -165,7 +178,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行获取加入企业微信二维码用例")
     @DisplayName("获取加入企业微信二维码")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(10)
     public void getJoinQrCode(){
         Response response = MemberApi.getJoinQrCode(token);
@@ -175,7 +189,8 @@ public class MemberCurrentsTestcase {
 
     @Story("执行获取活跃用户用例")
     @DisplayName("获取活跃用户")
-    @Test
+    @Execution(CONCURRENT)  //CONCURRENT表示支持多线程
+    @RepeatedTest(100)
     @Order(11)
     public void getActiveMember(){
         Date date = new Date();

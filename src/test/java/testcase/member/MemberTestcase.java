@@ -52,7 +52,10 @@ public class MemberTestcase {
     @BeforeEach
     public void setMemberId(){
         // 在每个测试用例开始前 创建一个新的成员用于测试
-        userId = MemberApi.getUserId(FakeDataUtil.getCurrentTimeStamp(), FakeDataUtil.getCurrentTimeStamp(), FakeDataUtil.getFakeMobile(), "2", token);
+        String id = "userId"+Thread.currentThread().getId()+FakeDataUtil.getCurrentTimeStamp();
+        String name = "userName"+Thread.currentThread().getId()+FakeDataUtil.getCurrentTimeStamp();
+        userId = MemberApi.getUserId(id, name, FakeDataUtil.getFakeMobile(), "2", token);
+
     }
 
 
