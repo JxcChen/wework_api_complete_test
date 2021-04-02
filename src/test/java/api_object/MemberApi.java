@@ -1,7 +1,6 @@
-package api_ibject;
+package api_object;
 
 import io.restassured.response.Response;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package testcase.member;
 
 import Utils.FakeDataUtil;
-import api_ibject.GetToken;
-import api_ibject.MemberApi;
+import api_object.GetToken;
+import api_object.MemberApi;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;

@@ -1,4 +1,4 @@
-package api_ibject;
+package api_object;
 
 import static io.restassured.RestAssured.given;
 
